@@ -18,16 +18,16 @@ await connectCloudinary();
 
 
 
-// const allowedOrigins=[
-//     'http://localhost:5173',
-//     'https://greencart-saswat.vercel.app'
-// ]
+const allowedOrigins=[
+    'http://localhost:5173',
+    'https://greencart-saswat.vercel.app'
+]
 
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
 app.use(express.json())
 app.use(cookieParser())
 app.use(express.urlencoded({extended:true}))
-app.use(cors("*"))
+app.use(cors({origin:allowedOrigins,credentials:true}))
 
 app.get('/', (req, res) => {
     res.send(`
