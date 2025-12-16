@@ -2,7 +2,8 @@ import Address from "../models/Address.js";
 
 export const addAddress=async (req,res)=>{
     try {
-        const {address,userId}=req.body;
+        const {address}=req.body;
+        const {userId}=req;
         await Address.create({...address,userId});
         res.json({
             success:true,
